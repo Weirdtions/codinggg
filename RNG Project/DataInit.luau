@@ -1,4 +1,4 @@
--- Player data saving etc
+-- Player data saving etc. Below this, the DataManager module (where money is added to player's profile)
 -- Done with ProfileStore module !
 
 local RunService = game:GetService("RunService")
@@ -69,3 +69,26 @@ Players.PlayerRemoving:Connect(function(player)
 	profile:EndSession()
 	DataManager.Profiles[player] = nil
 end)
+
+
+
+-- DataManager module, based on ProfileStore and all the above
+
+local DataManager = {}
+
+DataManager.Profiles = {}
+
+function DataManager.AddMoney(player, money)
+	print(player, money)
+	local profile = DataManager.Profiles[player]
+	print(profile)
+	if not profile then
+		return
+	end
+	local data = profile.Data
+	print(data)
+	data.Money += money
+	player.leaderstats.Money.Value = data.Money
+end
+
+return DataManager
