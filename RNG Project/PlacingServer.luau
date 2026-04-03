@@ -1,3 +1,5 @@
+-- Server-side of a placing system ! (like in "rob a" games)
+
 local module = {}
 
 local ServerStorage = game:GetService("ServerStorage")
